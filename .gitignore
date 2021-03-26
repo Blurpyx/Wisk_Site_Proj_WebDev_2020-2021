@@ -1,5 +1,7 @@
 .github/
 .firebaserc
+.firebase/
+
 firebase.json
 firestore.indexes.json
 *.rules
