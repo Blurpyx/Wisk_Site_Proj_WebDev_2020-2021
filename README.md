@@ -3,7 +3,3 @@
 
 ## Beschrijving
 Dit is een website die ik voor mijn project Web Development 2 bouw. Het idee kwam van mijn vriendin, daarom ga ik deze app zo ver mogelijk uitwerken.
-
-## Belangrijke links
-- https://console.firebase.google.com/u/0/project/wiskunde-site-lager/overview
-- https://wiskunde-site-lager.web.app/
