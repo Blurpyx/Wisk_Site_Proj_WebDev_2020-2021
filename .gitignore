@@ -1,9 +1,6 @@
 .github/
-functions/
-
-.gitignore
-database.rules.json
-firebase-debug.log
+.firebaserc
+firebase.json
 firestore.indexes.json
-firestore.rules
-storage.rules
+*.rules
+*.log
