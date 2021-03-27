@@ -1,8 +1,8 @@
-.github/
-.firebaserc
-.firebase/
+# .github/
+# .firebaserc
+# .firebase/
 
-firebase.json
-firestore.indexes.json
+# firebase.json
+# firestore.indexes.json
 *.rules
 *.log
