@@ -16,8 +16,16 @@ body {
 #zoekbalk {
     color: #F2F4FF;
     width: 100%;
-    min-height: 50px;
+    min-height: 40px;
     background-color: #354345;
+}
+
+.navbar-brand {
+    margin-left: 1em;
+}
+
+.navbar-brand.active {
+    font-weight: 700;
 }
 
 
@@ -95,6 +103,7 @@ ul.tiles > li > a {
     background-color: #5E0B15;
     padding: .5em;
     border-radius: 20px;
+    min-width: 128px;
 }
 .image-container.desktop * {
     width: 100%;
@@ -102,8 +111,40 @@ ul.tiles > li > a {
 .text-container.desktop {
     display: flex;
     margin: auto;
+    flex-wrap: 1;
 }
 
 .center {
     margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+    .fa-7x {
+        font-size: 5em;
+    }
+    .image-container.desktop {
+        width: 50%;
+        min-width: 50%;
+    }
+}
+
+@media (max-width: 992px) {
+    .fa-7x {
+        font-size: 4em;
+    }
+    .image-container.desktop {
+        width: 50%;
+        min-width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .fa-7x {
+        font-size: 3em;
+    }
+    
+    .image-container.desktop {
+        width: 50%;
+        min-width: 50%;
+    }
 }
