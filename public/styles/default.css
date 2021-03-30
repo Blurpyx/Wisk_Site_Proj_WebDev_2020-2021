@@ -71,7 +71,7 @@ header div.text-block {
 
 
 
-.tiles {
+.text-tiles {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -80,16 +80,18 @@ header div.text-block {
     justify-content: center;
 }
 
-ul.tiles > li {
-    min-width: 25%;
+ul.text-tiles > li {
+    /* min-width: 25%; */
     /* min-height: 200px; */
     background-color: #1D2F6F;
-    margin: .1em;
+    padding: 1em 1.5em;
+    margin: 0 2em;
     border-radius: 10px;
 }
 
-ul.tiles > li > a {
+ul.text-tiles > li > a {
     text-decoration: none;
+    color: white;
 }
 
 .unit-container.desktop {
@@ -120,7 +122,10 @@ ul.tiles > li > a {
 
 @media (max-width: 1200px) {
     .fa-7x {
-        font-size: 5em;
+        font-size: 5em !important;
+    }
+    .unit-container.desktop {
+        flex-direction: column;
     }
     .image-container.desktop {
         width: 50%;
@@ -130,21 +135,21 @@ ul.tiles > li > a {
 
 @media (max-width: 992px) {
     .fa-7x {
-        font-size: 4em;
+        font-size: 4em !important;
     }
     .image-container.desktop {
-        width: 50%;
-        min-width: 50%;
+        width: 60%;
+        min-width: 60%;
     }
 }
 
 @media (max-width: 768px) {
     .fa-7x {
-        font-size: 3em;
+        font-size: 3em !important;
     }
     
     .image-container.desktop {
-        width: 50%;
-        min-width: 50%;
+        width: 75%;
+        min-width: 75%;
     }
 }

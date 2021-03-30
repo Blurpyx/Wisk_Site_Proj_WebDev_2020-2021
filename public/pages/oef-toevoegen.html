@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="../styles/default.css">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+    <script src="https://kit.fontawesome.com/62fb8b105f.js" crossorigin="anonymous"></script>
+
+    <title>Oefeningen toevoegen</title>
+</head>
+<body>
+    <div class="flex" id="zoekbalk">
+        <div>
+            <span>Ik ben een zoekbalk</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-light bg-light" style="justify-content: flex-start;">
+        <a class="navbar-brand" href="../index.html">Home</a>
+        <a class="navbar-brand" href="#">></a>
+        <a class="navbar-brand active" href="#">Oefeningen toevoegen</a>
+    </nav>
+
+    <div class="container">
+        <fieldset>
+            <legend>Voeg een item toe</legend>
+            <form id="bewerking-toevoegen-form" action="#">
+                <select name="bewerking" id="bewerking">
+                    <option value="optelling">Optelling</option>
+                    <option value="verschil">Verschil</option>
+                    <option value="deling">Deling</option>
+                    <option value="vermenigvuldiging">Vermenigvuldiging</option>
+                </select>
+                
+                <!-- Optelling en verschil -->
+                <div id="opt-aft">
+                    <input type="number" name="term1" id="term1" placeholder="Term 1" value="0">
+                    <span id="minteken" style="display: none;">-</span>
+                    <span id="plusteken">+</span>
+                    <input type="number" name="term2" id="term2" placeholder="Term 2" value="0">
+                    <span>=</span>
+                    <input type="number" name="som" id="som" placeholder="Som" value="0">
+                    <input type="number" name="verschil" id="verschil" placeholder="Verschil" style="display: none;" value="0">
+                </div>
+
+                <div id="del" style="display: none;">
+                    <!-- Deling -->
+                    <input type="number" name="deeltal" id="deeltal" placeholder="Deeltal" style="margin-right: 3.74px;">
+                    <span>:</span>
+                    <input type="number" name="deler" id="deler" placeholder="Deler" style="margin-left: 3.74px;">
+                    <span>=</span>
+                    <input type="number" name="quotient" id="quotient" placeholder="Quotient">
+                    <span>+</span>
+                    <input type="number" name="rest" id="rest" placeholder="Rest">
+                </div>
+
+                <div id="verm" style="display: none;">
+                    <input type="number" name="factor1" id="factor1" placeholder="Factor 1" style="margin-right: 1.805px;">
+                    <span>x</span>
+                    <input type="number" name="factor2" id="factor2" placeholder="Factor 2" style="margin-left: 1.805px;">
+                    <span>=</span>
+                    <input type="number" name="product" id="product" placeholder="Product">
+                </div>
+                <button>Add</button>
+            </form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Huidige items:</legend>
+            <h5>Optellingen</h5>
+            <ul id="items-list">
+                <li>1 + 2 = 3</li>
+            </ul>
+        </fieldset>
+    </div>
+
+    <script src="../scripts/db_add.js"></script>
+    <script src="../scripts/app.js"></script>
+        
+</body>
+</html>
