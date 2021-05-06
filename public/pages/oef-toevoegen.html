@@ -13,6 +13,10 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
     <script src="https://kit.fontawesome.com/62fb8b105f.js" crossorigin="anonymous"></script>
 
     <title>Oefeningen toevoegen</title>
@@ -35,10 +39,10 @@
             <legend>Voeg een item toe</legend>
             <form id="bewerking-toevoegen-form" action="#">
                 <select name="bewerking" id="bewerking">
-                    <option value="optelling">Optelling</option>
-                    <option value="verschil">Verschil</option>
-                    <option value="deling">Deling</option>
-                    <option value="vermenigvuldiging">Vermenigvuldiging</option>
+                    <option value="optellingen">Optelling</option>
+                    <option value="verschillen">Verschil</option>
+                    <option value="delingen">Deling</option>
+                    <option value="vermenigvuldigingen">Vermenigvuldiging</option>
                 </select>
                 
                 <!-- Optelling en verschil -->
@@ -52,8 +56,8 @@
                     <input type="number" name="verschil" id="verschil" placeholder="Verschil" style="display: none;" value="0">
                 </div>
 
+                <!-- Deling -->
                 <div id="del" style="display: none;">
-                    <!-- Deling -->
                     <input type="number" name="deeltal" id="deeltal" placeholder="Deeltal" style="margin-right: 3.74px;">
                     <span>:</span>
                     <input type="number" name="deler" id="deler" placeholder="Deler" style="margin-left: 3.74px;">
@@ -63,6 +67,7 @@
                     <input type="number" name="rest" id="rest" placeholder="Rest">
                 </div>
 
+                <!-- Vermenigvuldiging -->
                 <div id="verm" style="display: none;">
                     <input type="number" name="factor1" id="factor1" placeholder="Factor 1" style="margin-right: 1.805px;">
                     <span>x</span>
@@ -74,14 +79,32 @@
             </form>
         </fieldset>
 
-        <fieldset>
+        <!-- <fieldset>
             <legend>Huidige items:</legend>
             <h5>Optellingen</h5>
             <ul id="items-list">
                 <li>1 + 2 = 3</li>
             </ul>
-        </fieldset>
+        </fieldset> -->
     </div>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBoNWTDb4WVLtOZR_x8yozA1lJNtbMlino",
+            authDomain: "wiskunde-site-lager-v02.firebaseapp.com",
+            projectId: "wiskunde-site-lager-v02",
+            storageBucket: "wiskunde-site-lager-v02.appspot.com",
+            messagingSenderId: "1016959028849",
+            appId: "1:1016959028849:web:f87b7e9f0e35487b6c55d0"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.firestore();
+    </script>
+
 
     <script src="../scripts/db_add.js"></script>
     <script src="../scripts/app.js"></script>

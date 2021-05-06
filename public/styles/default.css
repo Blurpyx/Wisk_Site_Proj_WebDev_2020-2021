@@ -14,10 +14,19 @@ body {
 
 
 #zoekbalk {
+    display: flex;
+    align-items: center;
+
     color: #F2F4FF;
-    width: 100%;
-    min-height: 40px;
     background-color: #354345;
+
+    /* width: calc(100% -2em); */
+    min-height: 40px;
+    padding: 0 1em;
+}
+
+.navbar {
+    background-color: #F2F4FF;
 }
 
 .navbar-brand {
@@ -56,7 +65,7 @@ header div.img-header img {
 
 header div.text-block {
     margin: auto 0;
-    margin-top: calc(auto - 1em);
+    margin: 2em 0;
     padding-left: 5em;
     flex: 4;
 }
@@ -70,29 +79,37 @@ header div.text-block {
 
 
 
-
-.text-tiles {
-    list-style: none;
+.tiles {
     display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    padding: 1em;
-    justify-content: center;
+    flex-wrap: 1;
 }
-
-ul.text-tiles > li {
-    /* min-width: 25%; */
-    /* min-height: 200px; */
+.tiles > li {
     background-color: #1D2F6F;
-    padding: 1em 1.5em;
-    margin: 0 2em;
-    border-radius: 10px;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    padding: 1em;
+    margin: .5em;
+
+    width: 10rem;
+}
+.tiles > li:first-child {
+    margin-left: 0;
+}
+.tiles > li > img {
+    width: 30%;
+    margin-right: 1em;
+}
+.tiles > li > a {
+    text-decoration: none;
+    color: #F2F4FF;
 }
 
-ul.text-tiles > li > a {
-    text-decoration: none;
-    color: white;
-}
+
 
 .unit-container.desktop {
     color: #F2F4FF;
