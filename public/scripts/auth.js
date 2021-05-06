@@ -1,3 +1,7 @@
+$( document ).load(function() {
+    $('.toast').toast('hide');
+});
+
 var signupForm = document.querySelector('#signup-form');
 var signupFault = document.querySelector('#signup-fault');
 
@@ -12,17 +16,19 @@ signupForm.addEventListener('submit', (e) => {
     // console.log(signupForm['signup-age'].value);
 
     // sign the user up
-    auth.createUserWithEmailAndPassword(email, pwd)
+    auth.createUserWithEmailAndPassword(email, pwd)             // REGISTREREN
         .then((cred) => {
             console.log(cred.user.email);
 
-            const modal = document.querySelector('#modal-signup');
+            const modal = document.querySelector('#modal-signup');  // REGISTRATIEFORM VERBERGEN
             M.Modal.getInstance(modal).close();
 
-            db.collection('users').doc(cred.user.uid).set({
+            db.collection('users').doc(cred.user.uid).set({     // BIJKOMENDE INFORMATIE IN DATABASE STEKEN
                 leeftijd: signupForm['signup-age'].value,
                 email: cred.user.email
             });
+
+            $('#toast-register').toast('show');         // ALLE 3 DE TOASTS VERSCHIJNEN => MOET MAAR 1 ZIJN
 
             signupForm.reset();
         })
@@ -46,7 +52,8 @@ btnLogout.addEventListener('click', (e) => {
     auth.signOut()
         .then(() => {
             console.log('user signed out.');
-            alert('Gebruiker uitgelogd.');
+            $('#toast-logout').toast('show');
+            // alert('Gebruiker uitgelogd.');
         })
         .catch((err) => {
             console.log(err.message);
@@ -70,6 +77,8 @@ loginForm.addEventListener('submit', (e) => {
 
             const modal = document.querySelector('#modal-login');
             M.Modal.getInstance(modal).close();
+
+            $('#toast-login').toast('show');
 
             loginForm.reset();
         })
