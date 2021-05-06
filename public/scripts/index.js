@@ -8,32 +8,34 @@ window.addEventListener('load', function() {
 
     jaar1_selector.addEventListener('click', function(e) {
         // e.preventDefault();
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         sessionStorage.setItem('Niveau', e.target.innerHTML);
     });
     jaar2_selector.addEventListener('click', function(e) {
         // e.preventDefault();
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         sessionStorage.setItem('Niveau', e.target.innerHTML);
     });
     jaar3_selector.addEventListener('click', function(e) {
         // e.preventDefault();
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         sessionStorage.setItem('Niveau', e.target.innerHTML);
     });
     jaar4_selector.addEventListener('click', function(e) {
         // e.preventDefault();
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         sessionStorage.setItem('Niveau', e.target.innerHTML);
     });
     jaar5_selector.addEventListener('click', function(e) {
         // e.preventDefault();
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         sessionStorage.setItem('Niveau', e.target.innerHTML);
     });
     jaar6_selector.addEventListener('click', function(e) {
         // e.preventDefault();
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         sessionStorage.setItem('Niveau', e.target.innerHTML);
     });
+
+
 });

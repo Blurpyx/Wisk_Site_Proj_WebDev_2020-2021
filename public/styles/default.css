@@ -110,6 +110,16 @@ header div.text-block {
 }
 
 
+.error-message {
+    color: red;
+    font-style: italic;
+}
+
+
+.flex {
+    display: flex;
+}
+
 
 .unit-container.desktop {
     color: #F2F4FF;
