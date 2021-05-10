@@ -71,6 +71,9 @@ header div.text-block {
 }
 
 
+#bewerking-toevoegen-form * {
+    margin-top: .5rem;
+}
 
 
 .content {
@@ -83,7 +86,7 @@ header div.text-block {
     display: flex;
     flex-wrap: 1;
 }
-.tiles > li {
+.tiles a {
     background-color: #1D2F6F;
     border-radius: 20px;
 
@@ -97,10 +100,10 @@ header div.text-block {
 
     width: 10rem;
 }
-.tiles > li:first-child {
+.tiles a:first-child {
     margin-left: 0;
 }
-.tiles > li > img {
+.tiles a > img {
     width: 30%;
     margin-right: 1em;
 }
@@ -145,6 +148,10 @@ header div.text-block {
 
 .center {
     margin: 0 auto;
+}
+
+.nav-wrapper a {
+    text-decoration: none;
 }
 
 @media (max-width: 1200px) {

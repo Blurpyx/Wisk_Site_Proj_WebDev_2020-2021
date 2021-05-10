@@ -2,6 +2,11 @@ window.addEventListener('load', function () {
     var Bewerking = document.getElementById('bewerking');
     var col = db.collection('optellingen');
 
+    $('#bewerking').val(sessionStorage.getItem('Bewerking')).change();
+
+    // console.log(Bewerking);
+    UpdateBewerking(Bewerking);
+
     {
         var optaftDiv = document.getElementById('opt-aft');
         var delDiv = document.getElementById('del');
@@ -71,16 +76,47 @@ window.addEventListener('load', function () {
     });
     
     Bewerking.addEventListener('change', function (e) {
-        console.log(`Bewerking veranderd ${e.target.value}`);
+        // console.log(`Bewerking veranderd ${e.target.value}`);
 
+        // console.log(e.target);
+        UpdateBewerking(e.target);
+    });
+
+    function UpdateBewerking(e) {
         var min = document.getElementById('minteken');
         var plus = document.getElementById('plusteken');
 
-        if (e.target.value == 'optellingen') {
+        {
+            var optaftDiv = document.getElementById('opt-aft');
+            var delDiv = document.getElementById('del');
+            var vermDiv = document.getElementById('verm');
+    
+            var Term_1 = document.getElementById('term1');
+            var Term_2 = document.getElementById('term2');
+            var Som = document.getElementById('som');
+            var Verschil = document.getElementById('verschil');
+        }
+    
+        {
+            var Deeltal = document.getElementById('deeltal');
+            var Deler = document.getElementById('deler');
+            var Quotient = document.getElementById('quotient');
+            var Rest = document.getElementById('rest');
+        }
+    
+        {
+            var Factor_1 = document.getElementById('factor1');
+            var Factor_2 = document.getElementById('factor2');
+            var Product = document.getElementById('product');
+        }
+
+        sessionStorage.setItem('Bewerking', e.value);
+
+        if (sessionStorage.getItem('Bewerking') == 'optellingen') {
             optaftDiv.style.display = 'block';
             delDiv.style.display = 'none';
             vermDiv.style.display = 'none';
-            console.log('Optelling gedetecteerd');
+            // console.log('Optelling gedetecteerd');
             min.style.display = 'none';
             plus.style.display = 'inline-block';
 
@@ -90,11 +126,11 @@ window.addEventListener('load', function () {
             document.getElementById('term2').style.marginLeft = '0';
 
 
-        } else if (e.target.value == 'verschillen') {
+        } else if (sessionStorage.getItem('Bewerking') == 'verschillen') {
             optaftDiv.style.display = 'block';
             delDiv.style.display = 'none';
             vermDiv.style.display = 'none';
-            console.log('Verschil gedetecteerd');
+            // console.log('Verschil gedetecteerd');
             plus.style.display = 'none';
             min.style.display = 'inline-block';
 
@@ -104,20 +140,20 @@ window.addEventListener('load', function () {
             document.getElementById('term2').style.marginLeft = '2.27px';
 
 
-        } else if (e.target.value == 'delingen') {
+        } else if (sessionStorage.getItem('Bewerking') == 'delingen') {
             delDiv.style.display = 'block';
             optaftDiv.style.display = 'none';
             vermDiv.style.display = 'none';
 
 
-        } else if (e.target.value == 'vermenigvuldigingen') {
+        } else if (sessionStorage.getItem('Bewerking') == 'vermenigvuldigingen') {
             vermDiv.style.display = 'block';
             optaftDiv.style.display = 'none';
             delDiv.style.display = 'none';
 
 
         }
-    });
+    };
 
     document.getElementById('bewerking-toevoegen-form').addEventListener('submit', (e) => {
         e.preventDefault();

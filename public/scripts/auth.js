@@ -1,5 +1,34 @@
-$( document ).load(function() {
-    $('.toast').toast('hide');
+$(document).ready(function () {
+    $('#toast-register').toast('hide');
+    $('#toast-logout').toast('hide');
+    $('#toast-login').toast('hide');
+
+    document.querySelectorAll('.logged-in').forEach(elem => {
+        elem.style.display = 'none';
+    });
+    document.querySelectorAll('.logged-out').forEach(elem => {
+        elem.style.display = 'none';
+    })
+});
+
+auth.onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        document.querySelectorAll('.logged-in').forEach(elem => {
+            elem.style.display = 'block';
+        });
+        document.querySelectorAll('.logged-out').forEach(elem => {
+            elem.style.display = 'none';
+        })
+    } else {
+        // No user is signed in.
+        document.querySelectorAll('.logged-in').forEach(elem => {
+            elem.style.display = 'none';
+        });
+        document.querySelectorAll('.logged-out').forEach(elem => {
+            elem.style.display = 'block';
+        })
+    }
 });
 
 var signupForm = document.querySelector('#signup-form');

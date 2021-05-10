@@ -4,6 +4,8 @@ window.addEventListener('load', function() {
     M.Modal.init(modals);
 
     $( document ).ready(function() {
-        $('.toast').toast('show');
+        $('#toast-register').toast('hide');
+        $('#toast-logout').toast('hide');
+        $('#toast-login').toast('hide');
     });
 });

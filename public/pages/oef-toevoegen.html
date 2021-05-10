@@ -13,32 +13,114 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Firebase stuffs -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
 
     <script src="https://kit.fontawesome.com/62fb8b105f.js" crossorigin="anonymous"></script>
 
     <title>Oefeningen toevoegen</title>
 </head>
+
 <body>
-    <div class="flex" id="zoekbalk">
-        <div>
-            <span>Ik ben een zoekbalk</span>
+    <nav class="z-depth-0 grey lighten-4">
+        <div class="nav-wrapper container">
+            <a href="/public/index.html" class="brand-logo" style="height: 100%; display: flex; align-items: center;">
+                <img src="../images/icons/home.svg" style="height: 40px;">
+            </a>
+            <ul id="nav-mobile" style="margin-left: 70px;">
+                <li class="logged-in">
+                    <span class="grey-text" id="jaarSelectie"></span>
+                </li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="logged-in">
+                    <a href="#" class="red-text" id="logout">Uitloggen</a>
+                </li>
+                <li class="logged-out">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Inloggen</a>
+                </li>
+                <li class="logged-out">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Registreren</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Registreren</h4><br/>
+            <span id="signup-fault" class="error-message"></span>
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required autocomplete="username" />
+                    <label for="signup-email">Email</label>
+                </div>
+                <div class="input-field">
+                    <label for="signup-password">Kies wachtwoord</label>
+                    <input type="password" id="signup-password" required autocomplete="new-password" />
+                </div>
+                <div class="flex">
+                    <div class="input-field" style="margin-right: 1rem;">
+                        <input type="number" id="signup-age" min="8" style="width: 10ch" required>
+                        <label for="signup-age">Leeftijd</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="signup-group" min="0" max="6" style="width: 10ch">
+                        <label for="signup-group">Groep</label>
+                    </div>
+                </div>
+                <button class="btn z-depth-0"
+                    style="background-color: #1D2F6F; border-radius: 10px;">Registreren</button>
+            </form>
         </div>
     </div>
 
-    <nav class="navbar navbar-light bg-light" style="justify-content: flex-start;">
-        <a class="navbar-brand" href="../index.html">Home</a>
-        <a class="navbar-brand" href="#">></a>
-        <a class="navbar-brand active" href="#">Oefeningen toevoegen</a>
-    </nav>
 
-    <div class="container">
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Inloggen</h4><br/>
+            <span id="login-fault" class="error-message"></span>
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required autocomplete="username" />
+                    <label for="login-email">Email</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required autocomplete="current-password" />
+                    <label for="login-password">Jouw wachtwoord</label>
+                </div>
+                <button class="btn z-depth-0" style="background-color: #1D2F6F; border-radius: 10px;">Inloggen</button>
+            </form>
+        </div>
+    </div>
+
+
+    <h2 class="center logged-out red-text" style="display: none;">Gelieve in te loggen...</h2>
+
+    <div class="container logged-in">
         <fieldset>
             <legend>Voeg een item toe</legend>
             <form id="bewerking-toevoegen-form" action="#">
-                <select name="bewerking" id="bewerking">
+                <select name="bewerking" id="bewerking" style="display: initial; width: 20ch;">
                     <option value="optellingen">Optelling</option>
                     <option value="verschillen">Verschil</option>
                     <option value="delingen">Deling</option>
@@ -47,33 +129,33 @@
                 
                 <!-- Optelling en verschil -->
                 <div id="opt-aft">
-                    <input type="number" name="term1" id="term1" placeholder="Term 1" value="0">
+                    <input type="number" name="term1" id="term1" placeholder="Term 1" value="0" style="width: 10ch;">
                     <span id="minteken" style="display: none;">-</span>
                     <span id="plusteken">+</span>
-                    <input type="number" name="term2" id="term2" placeholder="Term 2" value="0">
+                    <input type="number" name="term2" id="term2" placeholder="Term 2" value="0" style="width: 10ch;">
                     <span>=</span>
-                    <input type="number" name="som" id="som" placeholder="Som" value="0">
-                    <input type="number" name="verschil" id="verschil" placeholder="Verschil" style="display: none;" value="0">
+                    <input type="number" name="som" id="som" placeholder="Som" value="0" style="width: 10ch;">
+                    <input type="number" name="verschil" id="verschil" placeholder="Verschil" value="0" style="display: none; width: 10ch;">
                 </div>
 
                 <!-- Deling -->
                 <div id="del" style="display: none;">
-                    <input type="number" name="deeltal" id="deeltal" placeholder="Deeltal" style="margin-right: 3.74px;">
+                    <input type="number" name="deeltal" id="deeltal" placeholder="Deeltal" value="0" style="margin-right: 3.74px; width: 10ch;">
                     <span>:</span>
-                    <input type="number" name="deler" id="deler" placeholder="Deler" style="margin-left: 3.74px;">
+                    <input type="number" name="deler" id="deler" placeholder="Deler" value="0" style="margin-left: 3.74px; width: 10ch;">
                     <span>=</span>
-                    <input type="number" name="quotient" id="quotient" placeholder="Quotient">
+                    <input type="number" name="quotient" id="quotient" placeholder="Quotient" value="0" style="width: 10ch;">
                     <span>+</span>
-                    <input type="number" name="rest" id="rest" placeholder="Rest">
+                    <input type="number" name="rest" id="rest" placeholder="Rest" value="0" style="width: 10ch;">
                 </div>
 
                 <!-- Vermenigvuldiging -->
                 <div id="verm" style="display: none;">
-                    <input type="number" name="factor1" id="factor1" placeholder="Factor 1" style="margin-right: 1.805px;">
+                    <input type="number" name="factor1" id="factor1" placeholder="Factor 1" value="0" style="margin-right: 1.805px; width: 10ch;">
                     <span>x</span>
-                    <input type="number" name="factor2" id="factor2" placeholder="Factor 2" style="margin-left: 1.805px;">
+                    <input type="number" name="factor2" id="factor2" placeholder="Factor 2" value="0" style="margin-left: 1.805px; width: 10ch;">
                     <span>=</span>
-                    <input type="number" name="product" id="product" placeholder="Product">
+                    <input type="number" name="product" id="product" placeholder="Product" value="0" style="width: 10ch;">
                 </div>
                 <button>Add</button>
             </form>
@@ -89,6 +171,10 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -102,9 +188,16 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
+        // auth and firestore references
         const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        db.settings({ timestampsInSnapshots: true });
     </script>
 
+
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/nav.js"></script>
 
     <script src="../scripts/db_add.js"></script>
     <script src="../scripts/app.js"></script>
