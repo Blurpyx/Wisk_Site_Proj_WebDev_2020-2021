@@ -1,6 +1,8 @@
+var listTitle = document.querySelector('#list-title');
+var listItems = document.querySelector('#items-list');
+    
 window.addEventListener('load', function () {
     var AddForm = document.getElementById('bewerking-toevoegen-form');
-    var List = document.getElementById('items-list');
 
     AddForm.term1.addEventListener('input', function (e) {
         if (AddForm.bewerking.value == 'optelling') {

@@ -2,6 +2,9 @@ window.addEventListener('load', function () {
     var Bewerking = document.getElementById('bewerking');
     var col = db.collection('optellingen');
 
+    var listTitle = document.querySelector('#list-title');
+    var listItems = document.querySelector('#list-known');
+
     $('#bewerking').val(sessionStorage.getItem('Bewerking')).change();
 
     // console.log(Bewerking);
@@ -80,6 +83,18 @@ window.addEventListener('load', function () {
 
         // console.log(e.target);
         UpdateBewerking(e.target);
+        listTitle.innerHTML = e.target.value[0].toUpperCase() + e.target.value.slice(1);
+
+        db.collection(e.target.value).orderBy('id', 'desc').limit(10)
+            .onSnapshot(querySnapshot => {
+                listItems.innerHTML = '';
+                querySnapshot.forEach(doc => {
+                    // console.log(doc.id);
+                    var li = document.createElement('li');
+                    li.innerHTML = doc.id;
+                    listItems.appendChild(li);
+                });
+            })
     });
 
     function UpdateBewerking(e) {
@@ -161,35 +176,43 @@ window.addEventListener('load', function () {
         var bew = form.bewerking.value;
         // console.log(bew);
         col = db.collection(bew);
-        if(bew == 'optellingen') {
-            col.doc(form.term1.value + ' + ' + form.term2.value + ' = ' + form.som.value).set({
-                beschrijving: 'Term 1 + Term 2 = Som',
-                term1: form.term1.value,
-                term2: form.term2.value,
-                som: form.som.value
-            });
-        } else if(bew == 'verschillen') {
-            col.doc(form.term1.value + ' - ' + form.term2.value + ' = ' + form.verschil.value).set({
-                beschrijving: 'Term 1 - Term 2 = Verschil',
-                term1: form.term1.value,
-                term2: form.term2.value,
-                verschil: form.verschil.value
-            });
-        } else if(bew == 'delingen') {
-            col.doc(form.deeltal.value + ' : ' + form.deler.value + ' = ' + form.quotient.value + ' + ' + form.rest.value).set({
-                beschrijving: 'Deeltal : Deler = Quotiënt + Rest',
-                deeltal: form.deeltal.value,
-                deler: form.deler.value,
-                quot: form.quotient.value,
-                rest: form.rest.value
-            });
-        } else if(bew == 'vermenigvuldigingen') {
-            col.doc(form.factor1.value + ' x ' + form.factor2.value + ' = ' + form.product.value).set({
-                beschrijving: 'Factor 1 x Factor 2 = Product',
-                factor1: form.factor1.value,
-                factor2: form.factor2.value,
-                prod: form.product.value
-            });
-        }
+        col.get().then(function(querySnapshot) {
+            console.log(querySnapshot.size + 1);
+            if(bew == 'optellingen') {
+                col.doc(form.term1.value + ' + ' + form.term2.value + ' = ' + form.som.value).set({
+                    beschrijving: 'Term 1 + Term 2 = Som',
+                    term1: form.term1.value,
+                    term2: form.term2.value,
+                    som: form.som.value,
+                    id: querySnapshot.size + 1
+                });
+            } else if(bew == 'verschillen') {
+                col.doc(form.term1.value + ' - ' + form.term2.value + ' = ' + form.verschil.value).set({
+                    beschrijving: 'Term 1 - Term 2 = Verschil',
+                    term1: form.term1.value,
+                    term2: form.term2.value,
+                    verschil: form.verschil.value,
+                    id: querySnapshot.size + 1
+                });
+            } else if(bew == 'delingen') {
+                col.doc(form.deeltal.value + ' : ' + form.deler.value + ' = ' + form.quotient.value + ' + ' + form.rest.value).set({
+                    beschrijving: 'Deeltal : Deler = Quotiënt + Rest',
+                    deeltal: form.deeltal.value,
+                    deler: form.deler.value,
+                    quot: form.quotient.value,
+                    rest: form.rest.value,
+                    id: querySnapshot.size + 1
+                });
+            } else if(bew == 'vermenigvuldigingen') {
+                col.doc(form.factor1.value + ' x ' + form.factor2.value + ' = ' + form.product.value).set({
+                    beschrijving: 'Factor 1 x Factor 2 = Product',
+                    factor1: form.factor1.value,
+                    factor2: form.factor2.value,
+                    prod: form.product.value,
+                    id: querySnapshot.size + 1
+                });
+            }
+        });
+        
     });
 });
